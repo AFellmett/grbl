@@ -31,6 +31,8 @@ void system_init()
   #endif
   CONTROL_PCMSK |= CONTROL_MASK;  // Enable specific pins of the Pin Change Interrupt
   PCICR |= (1 << CONTROL_INT);   // Enable Pin Change Interrupt
+  // NOTE: Configure CONTROL_LASER_ENABLE_BIT as output
+  CONTROL_DDR |= (1<<CONTROL_LASER_ENABLE_BIT); 
 }
 
 

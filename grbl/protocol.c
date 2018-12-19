@@ -150,7 +150,12 @@ void protocol_main_loop()
 
       }
     }
-
+    // NOTE: Enable laser enable output if lasermode based on lasermode
+    if (bit_istrue(settings.flags,BITFLAG_LASER_MODE)) {
+      CONTROL_PORT |= (1 << CONTROL_LASER_ENABLE_BIT);
+    } else {
+      CONTROL_PORT &= ~(1 << CONTROL_LASER_ENABLE_BIT);
+    }
     // If there are no more characters in the serial read buffer to be processed and executed,
     // this indicates that g-code streaming has either filled the planner buffer or has
     // completed. In either case, auto-cycle start, if enabled, any queued moves.
